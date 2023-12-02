@@ -13,7 +13,7 @@ namespace NancyFX {
             {
                 var userRequest = this.Bind<UsersRequest>(); // Bind request data to UsersRequest model
                 await Functions.AddUser(Program.client, userRequest.id, userRequest.firstName, userRequest.lastName, userRequest.description, 
-                            userRequest.email, userRequest.profileProfile, userRequest.major, userRequest.minor, 
+                            userRequest.email, userRequest.profilePicture, userRequest.major, userRequest.minor, 
                             userRequest.coursesTaken);
                 return HttpStatusCode.Created;
             });
@@ -63,7 +63,7 @@ namespace NancyFX {
     {
             public int serviceId { get; set; }
             public string serviceName { get; set; }
-            public string shortServiceReview { get; set; }
+            public string shortServiceDescription { get; set; }
             public decimal price { get; set; }
             public int userId { get; set; }
             public string location { get; set; }
