@@ -26,3 +26,12 @@
 /Users/smoke/Desktop/NancyFX/bin/Debug/net8.0/Microsoft.Threading.Tasks.dll
 /Users/smoke/Desktop/NancyFX/bin/Debug/net8.0/System.Net.Http.Extensions.dll
 /Users/smoke/Desktop/NancyFX/bin/Debug/net8.0/System.Net.Http.Primitives.dll
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.csproj.AssemblyReference.cache
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.AssemblyInfoInputs.cache
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.AssemblyInfo.cs
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.csproj.CoreCompileInputs.cache
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.sourcelink.json
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.dll
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\refint\NancyFX.dll
+C:\Users\oapro\Downloads\CS392 Final Project\Backend\NancyFX\obj\Debug\net8.0\NancyFX.pdb
