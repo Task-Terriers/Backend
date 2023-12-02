@@ -8,44 +8,44 @@ namespace NancyFX
 {
     public static class Functions
     {
-        public static async Task AddUser(IFirebaseClient client, int id, string userName, string description, 
-                                  string email, string profileURL, string major, string minor, string[] classesTaken)
+        public static async Task AddUser(IFirebaseClient client, int id, string firstName, string lastName, string description, 
+                                  string email, string profilePicture, string major, string minor, string[] coursesTaken)
         {
             var user = new Users
             {
-                ID = id,
-                UserName = userName,
-                Description = description,
-                Email = email,
-                ProfileURL = profileURL,
-                Major = major,
-                Minor = minor,
-                ClassesTaken = classesTaken
+                id = id,
+                firstName = firstName,
+                lastName = lastName,
+                description = description,
+                email = email,
+                profilePicture = profilePicture,
+                major = major,
+                minor = minor,
+                coursesTaken = coursesTaken
             };
 
             SetResponse response = await client.SetAsync("Users/" + user.ID, user);
             Users result = response.ResultAs<Users>(); // Assuming you need the result for further processing
         }
 
-        public static async Task AddService(IFirebaseClient client, int id, decimal price, int userId, 
-                                     string location, string serviceType, double review, bool deleted, string serviceName)
-        {
+        public static async Task AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, int userId, 
+                                     string location, string serviceType, double review, bool deleted) {
             var service = new Services
             {
-                ID = id,
-                Price = price,
-                UserId = userId,
-                Location = location,
-                ServiceType = serviceType,
-                Review = review,
-                Deleted = deleted,
-                ServiceName = serviceName
+                serviceId = id,
+                serviceName = serviceName,
+                shortServiceDescription = description,
+                price = price,
+                userId = userId,
+                location = location,
+                serviceType = serviceType,
+                review = review,
+                deleted = deleted
             };
 
             SetResponse response = await client.SetAsync("Services/" + service.ID, service);
             Services result = response.ResultAs<Services>(); // Assuming you need the result for further processing
         }
-
         public static async Task<object> GetServices(IFirebaseClient client)
         {
             try
@@ -99,3 +99,4 @@ namespace NancyFX
         }
     }
 }
+
