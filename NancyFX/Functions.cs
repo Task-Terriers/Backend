@@ -24,7 +24,7 @@ namespace NancyFX
                 coursesTaken = coursesTaken
             };
 
-            SetResponse response = await client.SetAsync("Users/" + user.ID, user);
+            SetResponse response = await client.SetAsync("Users/" + user.id, user);
             Users result = response.ResultAs<Users>(); // Assuming you need the result for further processing
         }
 
@@ -32,9 +32,9 @@ namespace NancyFX
                                      string location, string serviceType, double review, bool deleted) {
             var service = new Services
             {
-                serviceId = id,
+                serviceId = serviceId,
                 serviceName = serviceName,
-                shortServiceDescription = description,
+                shortServiceDescription = shortServiceDescription,
                 price = price,
                 userId = userId,
                 location = location,
@@ -43,7 +43,7 @@ namespace NancyFX
                 deleted = deleted
             };
 
-            SetResponse response = await client.SetAsync("Services/" + service.ID, service);
+            SetResponse response = await client.SetAsync("Services/" + service.id, service);
             Services result = response.ResultAs<Services>(); // Assuming you need the result for further processing
         }
         public static async Task<object> GetServices(IFirebaseClient client)
@@ -85,7 +85,7 @@ namespace NancyFX
 
                 if (userData != null)
                 {
-                    Console.WriteLine($"User Data retrieved: {userData.UserName}");
+                    Console.WriteLine($"User Data retrieved: {userData.firstName}");
                 }
                 else
                 {
