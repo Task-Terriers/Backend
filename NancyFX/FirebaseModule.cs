@@ -1,6 +1,7 @@
 using Nancy;
 using FireSharp.Interfaces;
-using Nancy.ModelBinding; // For model binding
+using Nancy.ModelBinding;
+using System.Runtime.CompilerServices; // For model binding
 
 namespace NancyFX {
     public class FirebaseModule : NancyModule
@@ -47,26 +48,29 @@ namespace NancyFX {
 
     public class UsersRequest
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public string Description { get; set; }
-        public string Email { get; set; }
-        public string ProfileURL { get; set; }
-        public string Major { get; set; }
-        public string Minor { get; set; }
-        public string[] ClassesTaken { get; set; }
+        public int id { get; set; }
+        public string firstName { get; set; }
+        public string lastName {get; set; }
+        public string description { get; set; }
+        public string email { get; set; }
+        public string profilePicture { get; set; }
+        public string major { get; set; }
+        public string minor { get; set; }
+        public string[] coursesTaken { get; set; }
     }
 
     public class ServicesRequest
     {
-            public int ID { get; set; }
-            public decimal Price { get; set; }
-            public int UserId { get; set; }
-            public string Location { get; set; }
-            public string ServiceType { get; set; }
-            public double Review { get; set; }
-            public bool Deleted { get; set; }
-            public string ServiceName { get; set; }
+            public int serviceId { get; set; }
+            public string serviceName { get; set; }
+            public string shortServiceReview { get; set; }
+            public decimal price { get; set; }
+            public int userId { get; set; }
+            public string location { get; set; }
+            public string serviceType { get; set; }
+            public double review { get; set; }
+            public bool deleted { get; set; }
+ 
     }
 
 }

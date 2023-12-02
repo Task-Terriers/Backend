@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/smoke/Desktop/NancyFX/NancyFX.csproj": {}
+    "C:\\Users\\oapro\\Downloads\\CS392 Final Project\\Backend\\NancyFX\\NancyFX.csproj": {}
   },
   "projects": {
-    "/Users/smoke/Desktop/NancyFX/NancyFX.csproj": {
+    "C:\\Users\\oapro\\Downloads\\CS392 Final Project\\Backend\\NancyFX\\NancyFX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/smoke/Desktop/NancyFX/NancyFX.csproj",
+        "projectUniqueName": "C:\\Users\\oapro\\Downloads\\CS392 Final Project\\Backend\\NancyFX\\NancyFX.csproj",
         "projectName": "NancyFX",
-        "projectPath": "/Users/smoke/Desktop/NancyFX/NancyFX.csproj",
-        "packagesPath": "/Users/smoke/.nuget/packages/",
-        "outputPath": "/Users/smoke/Desktop/NancyFX/obj/",
+        "projectPath": "C:\\Users\\oapro\\Downloads\\CS392 Final Project\\Backend\\NancyFX\\NancyFX.csproj",
+        "packagesPath": "C:\\Users\\oapro\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oapro\\Downloads\\CS392 Final Project\\Backend\\NancyFX\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/smoke/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\oapro\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -67,7 +69,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
