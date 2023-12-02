@@ -43,7 +43,7 @@ namespace NancyFX
                 deleted = deleted
             };
 
-            SetResponse response = await client.SetAsync("Services/" + service.id, service);
+            SetResponse response = await client.SetAsync("Services/" + service.serviceId, service);
             Services result = response.ResultAs<Services>(); // Assuming you need the result for further processing
         }
         public static async Task<object> GetServices(IFirebaseClient client)
