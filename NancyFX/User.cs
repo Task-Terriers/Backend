@@ -4,13 +4,14 @@ namespace NancyFX
 {
     internal class Users
     {
-        public int ID { get; set; }
-        public string UserName { get; set; }
-        public string Description { get; set; }
-        public string Email { get; set; }
-        public string ProfileURL { get; set; }
-        public string Major { get; set; }
-        public string Minor { get; set; }
-        public string[] ClassesTaken { get; set; }
+        public int id { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string description { get; set; }
+        public string email { get; set; }
+        public string profilePicture { get; set; }
+        public string major { get; set; }
+        public string minor { get; set; }
+        public string[] coursesTaken { get; set; }
     }
 }
