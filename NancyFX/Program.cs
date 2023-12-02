@@ -15,8 +15,7 @@ namespace NancyFX
         {
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "mKrgFEbL8PmuavACKmhJ6q2XeQCSuqin5qGNKJMl",
-                BasePath = "https://taskterriers-39683-default-rtdb.firebaseio.com/"
+
             };
 
             client = new FireSharp.FirebaseClient(config);
