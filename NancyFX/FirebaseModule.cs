@@ -30,9 +30,9 @@ namespace NancyFX {
             Post("/services", async _ =>
             {
                 var serviceRequest = this.Bind<ServicesRequest>(); // Bind request data to ServicesRequest model
-                await Functions.AddService(Program.client, serviceRequest.serviceId, serviceRequest.price, serviceRequest.userId, 
-                                serviceRequest.location, serviceRequest.serviceType, serviceRequest.review, 
-                                serviceRequest.deleted, serviceRequest.serviceName, serviceRequest.shortServiceDescription);
+                await Functions.AddService(Program.client, serviceRequest.serviceId, serviceRequest.serviceName, serviceRequest.shortServiceDescription, 
+                                serviceRequest.price, serviceRequest.userId, serviceRequest.location, 
+                                serviceRequest.serviceType, serviceRequest.review, serviceRequest.deleted);
                 return HttpStatusCode.Created;
             });
 
