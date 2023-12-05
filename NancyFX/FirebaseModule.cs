@@ -4,43 +4,55 @@ using Nancy.ModelBinding;
 using System.Runtime.CompilerServices; // For model binding
 
 namespace NancyFX {
-    public class FirebaseModule : NancyModule
+public class FirebaseModule : NancyModule
     {
         public FirebaseModule() : base("/api")
         {
             // Add a new user
-            Post("/users", async _ =>
+            Post("/usersAdd", async _ =>
             {
-                var userRequest = this.Bind<UsersRequest>(); // Bind request data to UsersRequest model
+                var userRequest = this.Bind<UsersRequest>();
                 var user = await Functions.AddUser(Program.client, userRequest.id, userRequest.firstName, userRequest.lastName, userRequest.description, 
                         userRequest.email, userRequest.profilePicture, userRequest.major, userRequest.minor, 
                         userRequest.coursesTaken);
                 return Response.AsJson(user, HttpStatusCode.Created);
             });
 
-            // Get a specific user
-            Get("/users/{id:int}", async parameters =>
+            // Change an existing user
+            Patch("/usersChange/{id:int}", async parameters =>
             {
                 int userId = parameters.id;
-                var user = await Functions.GetUsers(Program.client, userId);
+                var userRequest = this.Bind<UsersRequest>();
+                var user = await Functions.ChangeUser(Program.client, userId, userRequest.firstName, userRequest.lastName, userRequest.description, 
+                        userRequest.email, userRequest.profilePicture, userRequest.major, userRequest.minor, 
+                        userRequest.coursesTaken);
+                return Response.AsJson(user);
+            });
+
+            // Get a specific user
+            Get("/usersGet/{id:int}", async parameters =>
+            {
+                int userId = parameters.id;
+                var user = await Functions.GetSpecificUser(Program.client, userId);
                 return Response.AsJson(user);
             });
 
             // Add a new service
-            Post("/services", async _ =>
+            Post("/servicesAdd", async _ =>
             {
-                var serviceRequest = this.Bind<ServicesRequest>(); // Bind request data to ServicesRequest model
+                var serviceRequest = this.Bind<ServicesRequest>();
                 var service = await Functions.AddService(Program.client, serviceRequest.serviceId, serviceRequest.serviceName, serviceRequest.shortServiceDescription, 
                             serviceRequest.price, serviceRequest.userId, serviceRequest.location, 
                             serviceRequest.serviceType, serviceRequest.review, serviceRequest.deleted);
                 return Response.AsJson(service, HttpStatusCode.Created);
             });
 
-            // Get all services
-            Get("/services", async _ =>
+            // Get a specific service
+            Get("/servicesGet/{id:int}", async parameters =>
             {
-                var services = await Functions.GetServices(Program.client);
-                return Response.AsJson(services);
+                int serviceId = parameters.id;
+                var service = await Functions.GetSpecificService(Program.client, serviceId);
+                return Response.AsJson(service);
             });
         }
     }
