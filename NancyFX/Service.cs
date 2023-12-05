@@ -2,7 +2,7 @@ using System;
 
 namespace NancyFX
 {
-    internal class Services
+    public class Services
     {
         public int serviceId { get; set; }
         public string serviceName { get; set; }

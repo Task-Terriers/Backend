@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/smoke/Desktop/NancyFX/NancyFX.csproj": {}
+    "/Users/smoke/Documents/GitHub/Backend/NancyFX/NancyFX.csproj": {}
   },
   "projects": {
-    "/Users/smoke/Desktop/NancyFX/NancyFX.csproj": {
+    "/Users/smoke/Documents/GitHub/Backend/NancyFX/NancyFX.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/smoke/Desktop/NancyFX/NancyFX.csproj",
+        "projectUniqueName": "/Users/smoke/Documents/GitHub/Backend/NancyFX/NancyFX.csproj",
         "projectName": "NancyFX",
-        "projectPath": "/Users/smoke/Desktop/NancyFX/NancyFX.csproj",
+        "projectPath": "/Users/smoke/Documents/GitHub/Backend/NancyFX/NancyFX.csproj",
         "packagesPath": "/Users/smoke/.nuget/packages/",
-        "outputPath": "/Users/smoke/Desktop/NancyFX/obj/",
+        "outputPath": "/Users/smoke/Documents/GitHub/Backend/NancyFX/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/smoke/.nuget/NuGet/NuGet.Config"

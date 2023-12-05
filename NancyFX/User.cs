@@ -2,7 +2,7 @@ using System;
 
 namespace NancyFX
 {
-    internal class Users
+    public class Users
     {
         public int id { get; set; }
         public string firstName { get; set; }
