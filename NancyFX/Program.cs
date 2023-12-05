@@ -11,11 +11,38 @@ namespace NancyFX
     {
         public static IFirebaseClient client { get; private set; }
 
+        private static Dictionary<string, string> LoadEnvFile(string filePath)
+        {
+            var envVariables = new Dictionary<string, string>();
+
+            foreach (var line in File.ReadAllLines(filePath))
+            {
+                var parts = line.Split('=', StringSplitOptions.RemoveEmptyEntries);
+
+                if (parts.Length != 2)
+                    continue;
+
+                envVariables[parts[0].Trim()] = parts[1].Trim();
+            }
+
+            return envVariables;
+        }
+
         public static async Task Main(string[] args)
         {
+
+            var envVariables = LoadEnvFile(".env"); // Assuming .env file is in the root directory
+
+            // Extract necessary values
+            string authSecret = envVariables["AuthSecret"];
+            string basePath = envVariables["BasePath"];  // Replace with your actual environment variable key
+
             IFirebaseConfig config = new FirebaseConfig
             {
-                // DONT FORGET TO ADD SECRET API KEY FOUND IN IMESSAGES
+                // Use the secret key from .env file
+                AuthSecret = authSecret,
+                BasePath = basePath
+                // Add other configuration details if necessary
             };
 
             client = new FireSharp.FirebaseClient(config);
@@ -32,10 +59,10 @@ namespace NancyFX
             };
 
             // Start the NancyFX server
-            using (var host = new NancyHost(new Uri("http://10.239.204.139:1234"), new CustomBootstrapper(), hostConfigs))
+            using (var host = new NancyHost(new Uri("http://10.239.84.254:1234"), new CustomBootstrapper(), hostConfigs))
             {
                 host.Start();
-                Console.WriteLine("NancyFX is running on http://10.239.204.139:1234");
+                Console.WriteLine("NancyFX is running on http://10.239.84.254:1234");
 
                 // Perform Firebase operations
                 // await GetUsers(client);
