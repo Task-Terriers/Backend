@@ -12,6 +12,6 @@ namespace NancyFX
         public string profilePicture { get; set; }
         public string major { get; set; }
         public string minor { get; set; }
-        public string[] coursesTaken { get; set; }
+        public string coursesTaken { get; set; }
     }
 }

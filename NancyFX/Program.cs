@@ -15,7 +15,7 @@ namespace NancyFX
         {
             IFirebaseConfig config = new FirebaseConfig
             {
-
+                // DONT FORGET TO ADD SECRET API KEY FOUND IN IMESSAGES
             };
 
             client = new FireSharp.FirebaseClient(config);
@@ -32,7 +32,7 @@ namespace NancyFX
             };
 
             // Start the NancyFX server
-            using (var host = new NancyHost(hostConfigs, new Uri("http://10.239.204.139:1234")))
+            using (var host = new NancyHost(new Uri("http://10.239.204.139:1234"), new CustomBootstrapper(), hostConfigs))
             {
                 host.Start();
                 Console.WriteLine("NancyFX is running on http://10.239.204.139:1234");

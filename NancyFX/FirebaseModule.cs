@@ -54,6 +54,13 @@ public class FirebaseModule : NancyModule
                 var service = await Functions.GetSpecificService(Program.client, serviceId);
                 return Response.AsJson(service);
             });
+
+            Get("/service-user-details", async _ =>
+            {
+                var details = await Functions.GetServiceUserDetails(Program.client);
+                return Response.AsJson(details);
+            });
+
         }
     }
 
@@ -70,7 +77,7 @@ public class FirebaseModule : NancyModule
         public string profilePicture { get; set; }
         public string major { get; set; }
         public string minor { get; set; }
-        public string[] coursesTaken { get; set; }
+        public string coursesTaken { get; set; }
     }
 
     public class ServicesRequest

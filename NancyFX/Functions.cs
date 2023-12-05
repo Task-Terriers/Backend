@@ -10,7 +10,7 @@ namespace NancyFX
     public static class Functions
     {
         public static async Task<Users> AddUser(IFirebaseClient client, int id, string firstName, string lastName, string description, 
-                                                string email, string profilePicture, string major, string minor, string[] coursesTaken)
+                                                string email, string profilePicture, string major, string minor, string coursesTaken)
         {
             var user = new Users
             {
@@ -31,7 +31,7 @@ namespace NancyFX
 
         public static async Task<Users> ChangeUser(IFirebaseClient client, int id, string? firstName = null, string? lastName = null, 
                                            string? description = null, string? email = null, string? profilePicture = null, 
-                                           string? major = null, string? minor = null, string[]? coursesTaken = null)
+                                           string? major = null, string? minor = null, string? coursesTaken = null)
         {
             FirebaseResponse response = await client.GetAsync($"Users/{id}");
             var user = response.ResultAs<Users>();
@@ -63,14 +63,23 @@ namespace NancyFX
             {
                 string path = $"Users/{userId}";
                 FirebaseResponse response = await client.GetAsync(path);
-                return response.ResultAs<Users>(); // Return the user object
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    return response.ResultAs<Users>(); // Return the user object
+                }
+                else
+                {
+                    Console.WriteLine($"Error retrieving user data: {response.StatusCode}");
+                    return null;
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error retrieving user data: {ex.Message}");
-                return null; // Or handle the error as you see fit
+                Console.WriteLine($"Exception retrieving user data: {ex.Message}");
+                return null;
             }
         }
+
 
 
         public static async Task<Services> AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, int userId, 
@@ -107,5 +116,52 @@ namespace NancyFX
                 throw new Exception("Service not found");
             }
         }
+
+        public static async Task<IEnumerable<ServiceUserDetail>> GetServiceUserDetails(IFirebaseClient client)
+{
+    try
+    {
+        string path = "Services/";
+        FirebaseResponse serviceResponse = await client.GetAsync(path);
+        var serviceData = serviceResponse.ResultAs<Dictionary<string, Services>>(); // Use Dictionary for deserialization
+
+        var details = new List<ServiceUserDetail>();
+
+        if (serviceData != null)
+        {
+            foreach (var serviceEntry in serviceData)
+            {
+                var service = serviceEntry.Value;
+                if (service != null)
+                {
+                    FirebaseResponse userResponse = await client.GetAsync($"Users/{service.userId}");
+                    var userData = userResponse.ResultAs<Users>();
+
+                    if (userData != null)
+                    {
+                        details.Add(new ServiceUserDetail
+                        {
+                            FirstName = userData.firstName,
+                            LastName = userData.lastName,
+                            Major = userData.major,
+                            ServiceId = service.serviceId,
+                            ServiceName = service.serviceName,
+                            Price = service.price,
+                            Review = service.review
+                        });
+                    }
+                }
+            }
+        }
+
+        return details;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error retrieving service user details: {ex.Message}");
+        throw;
+    }
+}
+
     }
 }
