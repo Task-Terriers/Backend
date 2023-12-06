@@ -39,10 +39,13 @@ namespace NancyFX
 
             IFirebaseConfig config = new FirebaseConfig
             {
-                // Use the secret key from .env file
-                AuthSecret = authSecret,
-                BasePath = basePath
-                // Add other configuration details if necessary
+                // // Use the secret key from .env file
+                // AuthSecret = authSecret,
+                // BasePath = basePath
+                // // Add other configuration details if necessary
+
+                AuthSecret = "mKrgFEbL8PmuavACKmhJ6q2XeQCSuqin5qGNKJMl",
+                BasePath = "https://taskterriers-39683-default-rtdb.firebaseio.com/"
             };
 
             client = new FireSharp.FirebaseClient(config);
@@ -59,10 +62,10 @@ namespace NancyFX
             };
 
             // Start the NancyFX server
-            using (var host = new NancyHost(new Uri("http://10.239.84.254:1234"), new CustomBootstrapper(), hostConfigs))
+            using (var host = new NancyHost(new Uri("http://192.168.1.127:1234"), new CustomBootstrapper(), hostConfigs))
             {
                 host.Start();
-                Console.WriteLine("NancyFX is running on http://10.239.84.254:1234");
+                Console.WriteLine("NancyFX is running on http://192.168.1.127:1234");
 
                 // Perform Firebase operations
                 // await GetUsers(client);
