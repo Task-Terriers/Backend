@@ -9,7 +9,7 @@ namespace NancyFX
 {
     public static class Functions
     {
-        public static async Task<Users> AddUser(IFirebaseClient client, int id, string firstName, string lastName, string description, 
+        public static async Task<Users> AddUser(IFirebaseClient client, string id, string firstName, string lastName, string description, 
                                                 string email, string profilePicture, string major, string minor, string coursesTaken)
         {
             var user = new Users
@@ -29,7 +29,7 @@ namespace NancyFX
             return response.ResultAs<Users>(); // Return the user object
         }
 
-        public static async Task<Users> ChangeUser(IFirebaseClient client, int id, string? firstName = null, string? lastName = null, 
+        public static async Task<Users> ChangeUser(IFirebaseClient client, string id, string? firstName = null, string? lastName = null, 
                                            string? description = null, string? email = null, string? profilePicture = null, 
                                            string? major = null, string? minor = null, string? coursesTaken = null)
         {
@@ -57,7 +57,7 @@ namespace NancyFX
             }
         }
 
-        public static async Task<Users> GetSpecificUser(IFirebaseClient client, int userId)
+        public static async Task<Users> GetSpecificUser(IFirebaseClient client, string userId)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace NancyFX
 
 
 
-        public static async Task<Services> AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, int userId, 
+        public static async Task<Services> AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, string userId, 
                                                       string location, string serviceType, double review, bool deleted)
         {
             var service = new Services
@@ -117,51 +117,70 @@ namespace NancyFX
             }
         }
 
-        public static async Task<IEnumerable<ServiceUserDetail>> GetServiceUserDetails(IFirebaseClient client)
-{
-    try
-    {
-        string path = "Services/";
-        FirebaseResponse serviceResponse = await client.GetAsync(path);
-        var serviceData = serviceResponse.ResultAs<Dictionary<string, Services>>(); // Use Dictionary for deserialization
-
-        var details = new List<ServiceUserDetail>();
-
-        if (serviceData != null)
+        public static async Task<IEnumerable<ServiceCardInfo>> GetServiceUserDetails(IFirebaseClient client)
         {
-            foreach (var serviceEntry in serviceData)
+            try
             {
-                var service = serviceEntry.Value;
-                if (service != null)
-                {
-                    FirebaseResponse userResponse = await client.GetAsync($"Users/{service.userId}");
-                    var userData = userResponse.ResultAs<Users>();
+                string path = "Services/";
+                FirebaseResponse serviceResponse = await client.GetAsync(path);
+                var serviceData = serviceResponse.ResultAs<Dictionary<string, Services>>(); // Use Dictionary for deserialization
 
-                    if (userData != null)
+                var details = new List<ServiceCardInfo>();
+
+                if (serviceData != null)
+                {
+                    foreach (var serviceEntry in serviceData)
                     {
-                        details.Add(new ServiceUserDetail
+                        var service = serviceEntry.Value;
+                        if (service != null)
                         {
-                            FirstName = userData.firstName,
-                            LastName = userData.lastName,
-                            Major = userData.major,
-                            ServiceId = service.serviceId,
-                            ServiceName = service.serviceName,
-                            Price = service.price,
-                            Review = service.review
-                        });
+                            FirebaseResponse userResponse = await client.GetAsync($"Users/{service.userId}");
+                            var userData = userResponse.ResultAs<Users>();
+
+                            if (userData != null)
+                            {
+                                details.Add(new ServiceCardInfo
+                                {
+                                    FirstName = userData.firstName,
+                                    LastName = userData.lastName,
+                                    Major = userData.major,
+                                    ServiceId = service.serviceId,
+                                    ServiceName = service.serviceName,
+                                    Price = service.price,
+                                    Review = service.review,
+                                    description = service.shortServiceDescription,
+                                    serviceType = service.serviceType
+                                });
+                            }
+                        }
                     }
                 }
+
+                return details;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving service user details: {ex.Message}");
+                throw;
             }
         }
-
-        return details;
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error retrieving service user details: {ex.Message}");
-        throw;
-    }
-}
+        public static async Task<bool> UserExists(IFirebaseClient client, string userId)
+        {
+            try
+            {
+                FirebaseResponse response = await client.GetAsync($"Users/{userId}");
+                if (response.StatusCode == System.Net.HttpStatusCode.OK && response.Body != "null")
+                {
+                    return true; // User exists
+                }
+                return false; // User does not exist or an empty response
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking user existence: {ex.Message}");
+                return false; // Handle error scenario
+            }
+        }
 
     }
 }

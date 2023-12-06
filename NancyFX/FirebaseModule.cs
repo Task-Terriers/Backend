@@ -19,9 +19,9 @@ public class FirebaseModule : NancyModule
             });
 
             // Change an existing user
-            Patch("/userChange/{id:int}", async parameters =>
+            Put("/userChange/{id}", async parameters =>
             {
-                int userId = parameters.id;
+                string userId = parameters.id;
                 var userRequest = this.Bind<UsersRequest>();
                 var user = await Functions.ChangeUser(Program.client, userId, userRequest.firstName, userRequest.lastName, userRequest.description, 
                         userRequest.email, userRequest.profilePicture, userRequest.major, userRequest.minor, 
@@ -30,9 +30,9 @@ public class FirebaseModule : NancyModule
             });
 
             // Get a specific user
-            Get("/userGet/{id:int}", async parameters =>
+            Get("/userGet/{id}", async parameters =>
             {
-                int userId = parameters.id;
+                string userId = parameters.id;
                 var user = await Functions.GetSpecificUser(Program.client, userId);
                 return Response.AsJson(user);
             });
@@ -48,7 +48,7 @@ public class FirebaseModule : NancyModule
             });
 
             // Get a specific service
-            Get("/serviceGet/{id:int}", async parameters =>
+            Get("/serviceGet/{id}", async parameters =>
             {
                 int serviceId = parameters.id;
                 var service = await Functions.GetSpecificService(Program.client, serviceId);
@@ -61,6 +61,14 @@ public class FirebaseModule : NancyModule
                 return Response.AsJson(details);
             });
 
+            Get("/userExists/{id}", async parameters =>
+            {
+                string userId = parameters.id;
+                bool exists = await Functions.UserExists(Program.client, userId);
+                return Response.AsJson(new { exists });
+            });
+
+
         }
     }
 
@@ -69,7 +77,7 @@ public class FirebaseModule : NancyModule
 
     public class UsersRequest
     {
-        public int id { get; set; }
+        public string id { get; set; }
         public string firstName { get; set; }
         public string lastName {get; set; }
         public string description { get; set; }
@@ -86,7 +94,7 @@ public class FirebaseModule : NancyModule
             public string serviceName { get; set; }
             public string shortServiceDescription { get; set; }
             public decimal price { get; set; }
-            public int userId { get; set; }
+            public string userId { get; set; }
             public string location { get; set; }
             public string serviceType { get; set; }
             public double review { get; set; }
