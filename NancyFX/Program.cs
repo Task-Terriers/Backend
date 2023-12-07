@@ -41,10 +41,10 @@ namespace NancyFX
             };
 
             // Initialize and start the NancyFX server
-            using (var host = new NancyHost(new Uri("http://10.239.84.254:1234"), new CustomBootstrapper(), hostConfigs))
+            using (var host = new NancyHost(new Uri("http://10.239.126.215:1234"), new CustomBootstrapper(), hostConfigs))
             {
                 host.Start();
-                Console.WriteLine("NancyFX is running on http://10.239.84.254:1234");
+                Console.WriteLine("NancyFX is running on http://10.239.126.215:1234");
 
                 // Here you can perform Firebase operations such as retrieving users
                 // await GetUsers(client);
