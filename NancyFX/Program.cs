@@ -23,6 +23,10 @@ namespace NancyFX
                 // BasePath = basePath
                 
 
+                AuthSecret = "mKrgFEbL8PmuavACKmhJ6q2XeQCSuqin5qGNKJMl",
+
+                BasePath = "https://taskterriers-39683-default-rtdb.firebaseio.com/"
+
             };
 
             // Create a Firebase client instance with the configuration

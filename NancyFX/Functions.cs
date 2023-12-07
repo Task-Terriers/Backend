@@ -11,7 +11,7 @@ namespace NancyFX
     {
         // Method to add a new user to Firebase
         public static async Task<Users> AddUser(IFirebaseClient client, string id, string firstName, string lastName, string description, 
-                                                string email, string profilePicture, string major, string minor, string coursesTaken, string serviceLink)
+                                                string email, string profilePicture, string major, string minor, string coursesTaken)
         {
             // Create a new user object
             var user = new Users
@@ -25,7 +25,6 @@ namespace NancyFX
                 major = major,
                 minor = minor,
                 coursesTaken = coursesTaken,
-                serviceLink = serviceLink
             };
 
             // Set the user data in Firebase and return the result
@@ -36,7 +35,7 @@ namespace NancyFX
         // Method to update an existing user's information in Firebase
         public static async Task<Users> ChangeUser(IFirebaseClient client, string id, string? firstName = null, string? lastName = null, 
                                            string? description = null, string? email = null, string? profilePicture = null, 
-                                           string? major = null, string? minor = null, string? coursesTaken = null, string? serviceLink = null)
+                                           string? major = null, string? minor = null, string? coursesTaken = null)
         {
             // Retrieve the existing user data
             FirebaseResponse response = await client.GetAsync($"Users/{id}");
@@ -53,7 +52,6 @@ namespace NancyFX
                 user.major = major ?? user.major;
                 user.minor = minor ?? user.minor;
                 user.coursesTaken = coursesTaken ?? user.coursesTaken;
-                user.serviceLink = serviceLink ?? user.serviceLink;
 
                 // Save the updated user data in Firebase
                 SetResponse updateResponse = await client.SetAsync($"Users/{id}", user);
