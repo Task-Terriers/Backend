@@ -10,7 +10,7 @@ Follow these steps to set up and run the NancyFX server in the TaskTerriers/Back
 
 1. **Clone the Repository and Change Directory:**
    ```bash
-    https://github.com/Task-Terriers/Backend
+    git clone https://github.com/Task-Terriers/Backend
     cd BackEnd/NancyFX
 
 
