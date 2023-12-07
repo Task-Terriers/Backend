@@ -9,9 +9,11 @@ namespace NancyFX
 {
     public static class Functions
     {
+        // Method to add a new user to Firebase
         public static async Task<Users> AddUser(IFirebaseClient client, string id, string firstName, string lastName, string description, 
                                                 string email, string profilePicture, string major, string minor, string coursesTaken)
         {
+            // Create a new user object
             var user = new Users
             {
                 id = id,
@@ -25,20 +27,23 @@ namespace NancyFX
                 coursesTaken = coursesTaken
             };
 
+            // Set the user data in Firebase and return the result
             SetResponse response = await client.SetAsync("Users/" + user.id, user);
             return response.ResultAs<Users>(); // Return the user object
         }
 
+        // Method to update an existing user's information in Firebase
         public static async Task<Users> ChangeUser(IFirebaseClient client, string id, string? firstName = null, string? lastName = null, 
                                            string? description = null, string? email = null, string? profilePicture = null, 
                                            string? major = null, string? minor = null, string? coursesTaken = null)
         {
+            // Retrieve the existing user data
             FirebaseResponse response = await client.GetAsync($"Users/{id}");
             var user = response.ResultAs<Users>();
 
             if (user != null)
             {
-                // Update fields if they are provided
+                // Update user fields if new values are provided
                 user.firstName = firstName ?? user.firstName;
                 user.lastName = lastName ?? user.lastName;
                 user.description = description ?? user.description;
@@ -48,6 +53,7 @@ namespace NancyFX
                 user.minor = minor ?? user.minor;
                 user.coursesTaken = coursesTaken ?? user.coursesTaken;
 
+                // Save the updated user data in Firebase
                 SetResponse updateResponse = await client.SetAsync($"Users/{id}", user);
                 return updateResponse.ResultAs<Users>();
             }
@@ -57,6 +63,7 @@ namespace NancyFX
             }
         }
 
+        // Method to retrieve a specific user's details from Firebase
         public static async Task<Users> GetSpecificUser(IFirebaseClient client, string userId)
         {
             try
@@ -80,11 +87,11 @@ namespace NancyFX
             }
         }
 
-
-
+        // Method to add a new service to Firebase
         public static async Task<Services> AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, string userId, 
-                                                      string location, string serviceType, double review, bool deleted)
+                                                      string location, string serviceType, double review, bool deleted, string serviceLink)
         {
+            // Create a new service object
             var service = new Services
             {
                 serviceId = serviceId,
@@ -95,13 +102,16 @@ namespace NancyFX
                 location = location,
                 serviceType = serviceType,
                 review = review,
-                deleted = deleted
+                deleted = deleted,
+                serviceLink = serviceLink
             };
 
+            // Set the service data in Firebase and return the result
             SetResponse response = await client.SetAsync("Services/" + service.serviceId, service);
             return response.ResultAs<Services>(); // Return the service object
         }
 
+        // Method to retrieve a specific service's details from Firebase
         public static async Task<Services> GetSpecificService(IFirebaseClient client, int serviceId)
         {
             FirebaseResponse response = await client.GetAsync($"Services/{serviceId}");
@@ -117,16 +127,18 @@ namespace NancyFX
             }
         }
 
+        // Method to retrieve service details along with user information from Firebase
         public static async Task<IEnumerable<ServiceCardInfo>> GetServiceUserDetails(IFirebaseClient client)
         {
             try
             {
                 string path = "Services/";
                 FirebaseResponse serviceResponse = await client.GetAsync(path);
-                var serviceData = serviceResponse.ResultAs<Dictionary<string, Services>>(); // Use Dictionary for deserialization
+                var serviceData = serviceResponse.ResultAs<Dictionary<string, Services>>(); // Deserialize data to a dictionary
 
                 var details = new List<ServiceCardInfo>();
 
+                // Loop through each service and retrieve corresponding user details
                 if (serviceData != null)
                 {
                     foreach (var serviceEntry in serviceData)
@@ -164,6 +176,8 @@ namespace NancyFX
                 throw;
             }
         }
+
+        // Method to check if a user exists in Firebase
         public static async Task<bool> UserExists(IFirebaseClient client, string userId)
         {
             try
