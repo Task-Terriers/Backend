@@ -6167,19 +6167,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/smoke/.nuget/packages/": {}
+    "/Users/anabellebrodsky/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/smoke/Documents/GitHub/Backend/NancyFX/NancyFX.csproj",
+      "projectUniqueName": "/Users/anabellebrodsky/Desktop/TaskTerriers/Backend/NancyFX/NancyFX.csproj",
       "projectName": "NancyFX",
-      "projectPath": "/Users/smoke/Documents/GitHub/Backend/NancyFX/NancyFX.csproj",
-      "packagesPath": "/Users/smoke/.nuget/packages/",
-      "outputPath": "/Users/smoke/Documents/GitHub/Backend/NancyFX/obj/",
+      "projectPath": "/Users/anabellebrodsky/Desktop/TaskTerriers/Backend/NancyFX/NancyFX.csproj",
+      "packagesPath": "/Users/anabellebrodsky/.nuget/packages/",
+      "outputPath": "/Users/anabellebrodsky/Desktop/TaskTerriers/Backend/NancyFX/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/smoke/.nuget/NuGet/NuGet.Config"
+        "/Users/anabellebrodsky/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"

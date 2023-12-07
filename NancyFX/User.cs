@@ -13,6 +13,5 @@ namespace NancyFX
         public string major { get; set; }
         public string minor { get; set; }
         public string coursesTaken { get; set; }
-        public string serviceLink{ get; set; }
     }
 }

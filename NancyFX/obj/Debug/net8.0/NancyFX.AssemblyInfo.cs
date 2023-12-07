@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NancyFX")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16ddf95af7dc9c7cd1291d9bb6a04c2c00c4560c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9387cb55b093d71fbc3dd78c14d92a2362c8f4e")]
 [assembly: System.Reflection.AssemblyProductAttribute("NancyFX")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NancyFX")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
