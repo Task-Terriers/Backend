@@ -18,7 +18,7 @@ namespace NancyFX {
                 // Call the AddUser function and return the newly created user
                 var user = await Functions.AddUser(Program.client, userRequest.id, userRequest.firstName, userRequest.lastName, userRequest.description, 
                         userRequest.email, userRequest.profilePicture, userRequest.major, userRequest.minor, 
-                        userRequest.coursesTaken);
+                        userRequest.coursesTaken, userRequest.serviceLink);
                 return Response.AsJson(user, HttpStatusCode.Created);
             });
 
@@ -32,7 +32,7 @@ namespace NancyFX {
                 // Call the ChangeUser function and return the updated user
                 var user = await Functions.ChangeUser(Program.client, userId, userRequest.firstName, userRequest.lastName, userRequest.description, 
                         userRequest.email, userRequest.profilePicture, userRequest.major, userRequest.minor, 
-                        userRequest.coursesTaken);
+                        userRequest.coursesTaken, userRequest.serviceLink);
                 return Response.AsJson(user);
             });
 
@@ -54,7 +54,7 @@ namespace NancyFX {
                 // Call the AddService function and return the newly created service
                 var service = await Functions.AddService(Program.client, serviceRequest.serviceId, serviceRequest.serviceName, serviceRequest.shortServiceDescription, 
                             serviceRequest.price, serviceRequest.userId, serviceRequest.location, 
-                            serviceRequest.serviceType, serviceRequest.review, serviceRequest.deleted, serviceRequest.serviceLink);
+                            serviceRequest.serviceType, serviceRequest.review, serviceRequest.deleted);
                 return Response.AsJson(service, HttpStatusCode.Created);
             });
 

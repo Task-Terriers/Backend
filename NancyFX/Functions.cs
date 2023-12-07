@@ -11,7 +11,7 @@ namespace NancyFX
     {
         // Method to add a new user to Firebase
         public static async Task<Users> AddUser(IFirebaseClient client, string id, string firstName, string lastName, string description, 
-                                                string email, string profilePicture, string major, string minor, string coursesTaken)
+                                                string email, string profilePicture, string major, string minor, string coursesTaken, string serviceLink)
         {
             // Create a new user object
             var user = new Users
@@ -24,7 +24,8 @@ namespace NancyFX
                 profilePicture = profilePicture,
                 major = major,
                 minor = minor,
-                coursesTaken = coursesTaken
+                coursesTaken = coursesTaken,
+                serviceLink = serviceLink
             };
 
             // Set the user data in Firebase and return the result
@@ -35,7 +36,7 @@ namespace NancyFX
         // Method to update an existing user's information in Firebase
         public static async Task<Users> ChangeUser(IFirebaseClient client, string id, string? firstName = null, string? lastName = null, 
                                            string? description = null, string? email = null, string? profilePicture = null, 
-                                           string? major = null, string? minor = null, string? coursesTaken = null)
+                                           string? major = null, string? minor = null, string? coursesTaken = null, string? serviceLink = null)
         {
             // Retrieve the existing user data
             FirebaseResponse response = await client.GetAsync($"Users/{id}");
@@ -52,6 +53,7 @@ namespace NancyFX
                 user.major = major ?? user.major;
                 user.minor = minor ?? user.minor;
                 user.coursesTaken = coursesTaken ?? user.coursesTaken;
+                user.serviceLink = serviceLink ?? user.serviceLink;
 
                 // Save the updated user data in Firebase
                 SetResponse updateResponse = await client.SetAsync($"Users/{id}", user);
@@ -89,7 +91,7 @@ namespace NancyFX
 
         // Method to add a new service to Firebase
         public static async Task<Services> AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, string userId, 
-                                                      string location, string serviceType, double review, bool deleted, string serviceLink)
+                                                      string location, string serviceType, double review, bool deleted)
         {
             // Create a new service object
             var service = new Services
@@ -103,7 +105,6 @@ namespace NancyFX
                 serviceType = serviceType,
                 review = review,
                 deleted = deleted,
-                serviceLink = serviceLink
             };
 
             // Set the service data in Firebase and return the result

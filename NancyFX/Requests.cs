@@ -12,6 +12,7 @@ namespace NancyFX {
         public string major { get; set; }
         public string minor { get; set; }
         public string coursesTaken { get; set; }
+        public string serviceLink {get; set; }
     }
 
     public class ServicesRequest
@@ -25,7 +26,6 @@ namespace NancyFX {
             public string serviceType { get; set; }
             public double review { get; set; }
             public bool deleted { get; set; }
-            public string serviceLink { get; set; }
     }
 }
     
