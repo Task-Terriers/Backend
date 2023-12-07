@@ -89,7 +89,7 @@ namespace NancyFX
 
         // Method to add a new service to Firebase
         public static async Task<Services> AddService(IFirebaseClient client, int serviceId, string serviceName, string shortServiceDescription, decimal price, string userId, 
-                                                      string location, string serviceType, double review, bool deleted)
+                                                      string location, string serviceType, double review, bool deleted, string serviceLink)
         {
             // Create a new service object
             var service = new Services
@@ -102,7 +102,8 @@ namespace NancyFX
                 location = location,
                 serviceType = serviceType,
                 review = review,
-                deleted = deleted
+                deleted = deleted,
+                serviceLink = serviceLink
             };
 
             // Set the service data in Firebase and return the result

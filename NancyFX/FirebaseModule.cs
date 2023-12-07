@@ -54,7 +54,7 @@ namespace NancyFX {
                 // Call the AddService function and return the newly created service
                 var service = await Functions.AddService(Program.client, serviceRequest.serviceId, serviceRequest.serviceName, serviceRequest.shortServiceDescription, 
                             serviceRequest.price, serviceRequest.userId, serviceRequest.location, 
-                            serviceRequest.serviceType, serviceRequest.review, serviceRequest.deleted);
+                            serviceRequest.serviceType, serviceRequest.review, serviceRequest.deleted, serviceRequest.serviceLink);
                 return Response.AsJson(service, HttpStatusCode.Created);
             });
 

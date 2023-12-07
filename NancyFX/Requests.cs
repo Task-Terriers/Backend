@@ -25,7 +25,7 @@ namespace NancyFX {
             public string serviceType { get; set; }
             public double review { get; set; }
             public bool deleted { get; set; }
- 
+            public string serviceLink { get; set; }
     }
 }
     
